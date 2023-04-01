@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;400;800&family=Josefin+Sans:wght@700&family=Space+Mono:wght@700&display=swap');
+
+:root {
+    --bright-blue: hsl(220, 98%, 61%);
+    --check-background: linear-gradient hsl(192, 100%, 67%) to hsl(280, 87%, 65%);
+    --very-dark-blue: hsl(235, 21%, 11%);
+    --very-dark-desaturated-blue: hsl(235, 24%, 19%);
+    --light-grayish-blue: hsl(234, 39%, 85%);
+    --light-grayish-glue-hover: hsl(236, 33%, 92%);
+    --dark-grayish-blue: hsl(234, 11%, 52%);
+    --very-dark-grayish-blue: hsl(233, 14%, 35%);
+    --very-dark-grayish-blue: hsl(237, 14%, 26%);
+
+    --font-size: 18px;
+    --inter-font: 'Inter', sans-serif;
+    --monospace: 'Space Mono', monospace;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url("/asesst/img/bg-mobile-dark.jpg");
+    background-repeat: no-repeat;
+    background-color: var(--very-dark-blue);
+    color: var(--dark-grayish-blue);
+    font-size: var(--font-size);
+    font-family: var(--inter-font);
+    margin: 0;
+    padding: 0;
+}
+
+
+header div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+
+header div p {
+    font-weight: 600;
+    color: aliceblue;
+    font-size: 25px;
+    letter-spacing: 10px;
+}
+
+
+
