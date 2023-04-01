@@ -37,7 +37,7 @@ header div {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding: 15px;
+    padding: 18px;
 }
 
 
@@ -47,6 +47,35 @@ header div p {
     font-size: 25px;
     letter-spacing: 10px;
 }
+
+.create-todo button {
+    position: absolute;
+    height: 22px;
+    width: 22px;
+    border-radius: 50%;
+    border: 1px solid var(--very-dark-grayish-blue);
+    background-color: var(--very-dark-desaturated-blue);
+    margin: 7px 0 0 28px;
+}
+
+.input-box {
+    background-color: var(--very-dark-desaturated-blue);
+    border: 1px solid var(--very-dark-desaturated-blue);
+    border-radius: 4px;
+    padding: 10px;
+    width: 85%;
+    display: block;
+    margin : 0 auto;
+    font-family: var(--inter-font);
+    color: var(--dark-grayish-blue);
+    outline: none;
+}
+
+.create-todo input::placeholder {
+    text-align: center;
+}
+
+
 
 
 
