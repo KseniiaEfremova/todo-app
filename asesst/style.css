@@ -31,6 +31,13 @@ body {
     padding: 0;
 }
 
+
+.grid-wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
 /* header */
 
 header div {
@@ -115,6 +122,13 @@ header div p {
     font-size: 12px;
     font-weight: 500;
 }
+
+.cross-btn {
+    border: none;
+    background-color: var(--very-dark-desaturated-blue);
+    margin-right: 10px;
+}
+
 
 
 
