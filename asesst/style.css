@@ -99,7 +99,8 @@ header div p {
     /* padding: 10px; */
     margin: 0 15px;
     align-items: center;
-    
+    color: var(--light-grayish-blue);
+
 }
 
 .todo-item {
@@ -126,15 +127,22 @@ header div p {
 .cross-btn {
     border: none;
     background-color: var(--very-dark-desaturated-blue);
-    margin-right: 10px;
+    margin-right: 12px;
 }
 
 
+.todo-item:last-child {
+    color: var(--dark-grayish-blue);
+    border-bottom: none;
+}
 
+.todo-item:last-child p{
+    margin: 0px;
+    padding: 18px 12px;
+}
 
-
-
-
-
+.todo-item:last-child p:last-child {
+    margin-right: 5px;
+}
 
 
