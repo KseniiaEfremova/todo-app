@@ -22,6 +22,7 @@ html {
 
 body {
     background-image: url("/asesst/img/bg-mobile-dark.jpg");
+    background-size:contain;
     background-repeat: no-repeat;
     background-color: var(--very-dark-blue);
     color: var(--dark-grayish-blue);
@@ -31,11 +32,15 @@ body {
     padding: 0;
 }
 
-
 .grid-wrapper {
     display: grid;
     grid-template-columns: 1fr;
     gap: 1rem;
+}
+
+
+button {
+    cursor: pointer;
 }
 
 /* header */
@@ -96,7 +101,6 @@ header div p {
     background-color: var(--very-dark-desaturated-blue);
     border: 1px solid var(--very-dark-desaturated-blue);
     border-radius: 4px;
-    /* padding: 10px; */
     margin: 0 15px;
     align-items: center;
     color: var(--light-grayish-blue);
@@ -145,4 +149,33 @@ header div p {
     margin-right: 5px;
 }
 
+/* operations block */
 
+.operations-block {
+    background-color: var(--very-dark-desaturated-blue);
+    border: 1px solid var(--very-dark-desaturated-blue);
+    border-radius: 4px;
+    margin: 0 15px;
+    align-items: center;
+    color: var(--light-grayish-blue);
+    text-align: center;
+}
+
+.operations-block button {
+    border: none;
+    background-color: var(--very-dark-desaturated-blue);
+    color: var(--dark-grayish-blue);
+    padding: 15px;
+
+}
+
+.operations-block button:hover {
+    color: var(--bright-blue);
+}
+
+
+footer {
+    margin: 40px 20px;
+    font-size: 12px;
+    text-align: center;
+}
