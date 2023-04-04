@@ -74,14 +74,34 @@ header div p {
     align-items: center;
 }
 
-.done-btn {
+
+
+.check-btn {
     height: 21px;
     width: 21px;
     border-radius: 50%;
     border: 1px solid var(--very-dark-grayish-blue);
     background-color: var(--very-dark-desaturated-blue);
+}
+
+.done-btn {
+    background-image: linear-gradient(to bottom right, rgb(87, 221, 255),rgb(192, 88, 243));
+}
+
+.notDone {
+    background-color: var(--very-dark-desaturated-blue);
+}
+
+.crossed-text {
+    text-decoration: line-through;
 
 }
+
+.noTick {
+    display: none;
+}
+
+
 
 .input-box {
     background-color: var(--very-dark-desaturated-blue);
