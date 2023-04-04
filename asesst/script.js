@@ -1,68 +1,85 @@
 let addMessage = document.querySelector(".input-box");
 let todo = document.querySelector(".todo-list");
+let tasks = document.querySelector("#display-list");
+console.log(tasks);
 
 let todoList = [];
 
 if (localStorage.getItem("todo")) {
     todoList = JSON.parse(localStorage.getItem("todo"));
-    displayMessages();
+    todoList.forEach((message) => displayMessage(message));
+    console.log(todoList)
 }
 
-document.addEventListener('click', (e) => {
-    if (e.target.classList.contains('check-btn')) {
-        button = todoList.find(item => "item_" + item.id === e.target.id);
-        if (button.checked) {
-            button.checked = false
-            console.log(button.checked)
-            e.target.classList.remove("done-btn");
-            e.target.children[0].classList.add("noTick");
 
-        } else {
-            button.checked = true
-            console.log(button.checked)
-            e.target.classList.add("done-btn");
-            e.target.children[0].classList.remove("noTick");
-        }
+tasks.addEventListener("click", doneTask);
+
+function doneTask(event) {
+    // finding all elements
+    let parent = event.target.closest(".flex-item");
+    let button = parent.children[0];
+    let textTask = parent.children[1];
+    let tick = button.children[0];
+
+    // chanching style of done elements
+    button.classList.toggle("done-btn");
+    textTask.classList.toggle("crossed-text");
+    tick.classList.toggle("noTick");
+    console.log(parent);
+
+    // saving shanges in the local storage
+    let id = Number(button.id);
+    let task = todoList.find((task) => task.id === id);
+    task.checked = !task.checked;
+    console.log(id);
+    setStorage('todo', todoList);
+    console.log(todoList);
+
+}
 
 
 
 
-        // console.log(e.target.id);
-        // console.log("item_" + todoList[0].id);
-
-    }
-})
-
+//  Addind new task after clicking Enter
 addMessage.addEventListener("keypress", function (event) {
     if (event.key === "Enter") {
+
+        event.preventDefault();
+
         let newTodo = {
             id: new Date().getTime(),
             todo: addMessage.value,
             checked: false,
             visibility: true
-        }
-        event.preventDefault();
-
+        };
         todoList.push(newTodo);
-        displayMessages();
         addMessage.value = "";
-        localStorage.setItem("todo", JSON.stringify(todoList));
+        setStorage('todo', todoList);
+        displayMessage(newTodo);
+        addMessage.focus();
+
     }
 });
 
 
-function displayMessages() {
-    let displayMessage = "";
-    todoList.forEach(function (item, i) {
-        displayMessage += `
+
+// function displays one task
+function displayMessage(todoItem) {
+
+    let cssButtonClass = todoItem.checked ? "check-btn done-btn" : "check-btn notDone";
+    let cssTickClass = todoItem.checked ? "" : "noTick";
+    let cssTextClass = todoItem.checked ? "crossed-text" : "";
+
+
+    let message = `
         <div class="todo-item">
                 <div class="flex-item" >
-                    <button class="check-btn" id='item_${item.id}'>
-                        <svg class="noTick" xmlns="http://www.w3.org/2000/svg" width="10" height="8">
+                    <button class="${cssButtonClass}" id='${todoItem.id}'>
+                        <svg class="${cssTickClass}" xmlns="http://www.w3.org/2000/svg" width="10" height="8">
                         <path fill="none" stroke="#FFF" stroke-width="2" d="M1 4.304L3.696 7l6-6" />
                         </svg>
                     </button>
-                    <p>${item.todo}</p>
+                    <p class="${cssTextClass}">${todoItem.todo}</p>
                 </div>
 
                 <button class="cross-btn">
@@ -72,94 +89,21 @@ function displayMessages() {
                     </svg>
                 </button>
         </div>`;
-        todo.innerHTML = displayMessage;
-    })
+    todo.insertAdjacentHTML("beforeend", message);
+    // todo.innerHTML = message;
+}
+
+
+function setStorage(key, value) {
+    localStorage.setItem(key, JSON.stringify(value));
+}
+
+function getStorage(key) {
+    return JSON.parse(localStorage.getItem(key));
 }
 
 
 
-
-
-
-// function toChangeButton(data) {
-//     for (let index in data) {
-//         console.log(data[index].done);
-//         console.log(data[index].id);
-//         isDone(data[index].done, data[index].id);
-//     }
-// };
-
-
-
-
-
-
-
-
-
-
-// let inputText = document.querySelector(".input-box");
-
-// let displayTodoListEl = document.getElementById("display-list");
-
-
-
-// // buttons.forEach(changeButton);
-
-// // function changeButton(button) {
-// //     button.addEventListener("click", () => {
-// //         button.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="10" height="8">
-// //         <path fill="none" stroke="#FFF" stroke-width="2" d="M1 4.304L3.696 7l6-6" />
-// //     </svg>`
-// //         console.log(button.innerHTML)
-// //     });
-// // }
-
-
-
-// inputText.addEventListener("keypress", function (event) {
-//     if (event.key === "Enter") {
-//         let newText = inputText.value;
-//         event.preventDefault();
-//         data.push(
-//             {
-//                 id: data.length + 1,
-//                 text: newText,
-//                 done: false,
-//                 visibility: true
-//             }
-//         );
-//         console.log(data);
-//         displayTodoList(data);
-//         inputText.value = "";
-//     }
-// });
-
-
-// function isDone(done, id) {
-//     let buttons = document.querySelectorAll(".done-btn");
-//     console.log(buttons)
-//     let todoTextsEl = document.querySelectorAll(".text-task");
-//     let ticks = document.querySelectorAll(".ticks");
-//     if (done) {
-//         buttons[id - 1].classList.remove(".notDone");
-//         todoTextsEl[id - 1].classList.remove(".crossed-text");
-//         ticks[id - 1].classList.remove(".noTick");
-
-//     } else {
-//         buttons[id - 1].setAttribute("class", ".notDone");
-//         todoTextsEl[id - 1].setAttribute("class", ".crossed-text");
-//         ticks[id - 1].setAttribute("class", ".noTick");
-//     }
-// }
-
-// function toChangeButton(data) {
-//     for (let index in data) {
-//         console.log(data[index].done);
-//         console.log(data[index].id);
-//         isDone(data[index].done, data[index].id);
-//     }
-// }
 
 
 // function isVisible(visibility) {

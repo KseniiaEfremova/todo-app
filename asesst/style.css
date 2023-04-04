@@ -86,6 +86,7 @@ header div p {
 
 .done-btn {
     background-image: linear-gradient(to bottom right, rgb(87, 221, 255),rgb(192, 88, 243));
+    text-decoration: line-through;
 }
 
 .notDone {
