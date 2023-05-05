@@ -13,31 +13,45 @@ if (localStorage.getItem("todo")) {
 
 
 tasks.addEventListener("click", doneTask);
+tasks.addEventListener("click", deleteTask);
+
 
 function doneTask(event) {
+    if (event.target.dataset.action !== 'done') return;
     // finding all elements
-    let parent = event.target.closest(".flex-item");
-    let button = parent.children[0];
-    let textTask = parent.children[1];
+    let parent = event.target.closest(".todo-item");
+    let button = parent.children[0].children[0];
+    let textTask = parent.children[0].children[1];
     let tick = button.children[0];
 
     // chanching style of done elements
     button.classList.toggle("done-btn");
     textTask.classList.toggle("crossed-text");
     tick.classList.toggle("noTick");
-    console.log(parent);
 
-    // saving shanges in the local storage
-    let id = Number(button.id);
+    // saving changes in the local storage
+    let id = Number(parent.id);
     let task = todoList.find((task) => task.id === id);
     task.checked = !task.checked;
-    console.log(id);
     setStorage('todo', todoList);
-    console.log(todoList);
 
 }
 
+function deleteTask(event) {
+    if (event.target.dataset.action !== 'delete') return;
 
+    let parent = event.target.closest(".todo-item");
+
+    // finding id of the task
+    let id = Number(parent.id);
+
+    //deleting the task from local storage and saving changes
+    let tasks = todoList.filter((task) => task.id !== id);
+    setStorage('todo', tasks);
+    // parent.remove();
+    console.log(todoList);
+
+}
 
 
 //  Addind new task after clicking Enter
@@ -72,19 +86,19 @@ function displayMessage(todoItem) {
 
 
     let message = `
-        <div class="todo-item">
-                <div class="flex-item" >
-                    <button class="${cssButtonClass}" id='${todoItem.id}'>
-                        <svg class="${cssTickClass}" xmlns="http://www.w3.org/2000/svg" width="10" height="8">
-                        <path fill="none" stroke="#FFF" stroke-width="2" d="M1 4.304L3.696 7l6-6" />
+        <div class="todo-item" id='${todoItem.id}'>
+                <div class="flex-item">
+                    <button class="${cssButtonClass}" data-action="done">
+                        <svg class="${cssTickClass}" data-action="done" xmlns="http://www.w3.org/2000/svg" width="10" height="8">
+                        <path data-action="done" fill="none" stroke="#FFF" stroke-width="2" d="M1 4.304L3.696 7l6-6" />
                         </svg>
                     </button>
-                    <p class="${cssTextClass}">${todoItem.todo}</p>
+                    <p class="${cssTextClass}" data-action="done">${todoItem.todo}</p>
                 </div>
 
-                <button class="cross-btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18">
-                        <path fill="#494C6B" fill-rule="evenodd"
+                <button class="cross-btn" data-action="delete">
+                    <svg data-action="delete" class="cross-btn" xmlns="http://www.w3.org/2000/svg" width="18" height="18">
+                        <path data-action="delete" fill="#494C6B" fill-rule="evenodd"
                             d="M16.97 0l.708.707L9.546 8.84l8.132 8.132-.707.707-8.132-8.132-8.132 8.132L0 16.97l8.132-8.132L0 .707.707 0 8.84 8.132 16.971 0z" />
                     </svg>
                 </button>
@@ -116,7 +130,11 @@ function getStorage(key) {
 
 
 // function init() {
-//     displayTodoList(data);
+//     if (localStorage.getItem("todo")) {
+//         todoList = JSON.parse(localStorage.getItem("todo"));
+//         todoList.forEach((message) => displayMessage(message));
+//         console.log(todoList)
+//     }
 // }
 
 // init();
