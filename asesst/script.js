@@ -1,7 +1,12 @@
 let addMessage = document.querySelector(".input-box");
 let todo = document.querySelector(".todo-list");
 let tasks = document.querySelector("#display-list");
-console.log(tasks);
+
+let allTasksBtn = document.querySelector("#all-tasks");
+let activeTasks = document.querySelector("#active-tasks");
+let completedTasks = document.querySelector("#completed-tasks");
+
+
 
 let todoList = [];
 
@@ -50,6 +55,47 @@ function deleteTask(event) {
     setStorage('todo', todoList);
     parent.remove();
 }
+
+
+allTasksBtn.addEventListener("click", displayAllTasks);
+activeTasks.addEventListener("click", displayActiveTasks);
+completedTasks.addEventListener("click", displayCompletedTasks);
+
+
+function displayAllTasks(event) {
+
+
+}
+
+function displayActiveTasks(event) {
+    let allTasks = tasks.children;
+    Array.from(allTasks).forEach((oneTask) => {
+        btnClassName = oneTask.children[0].children[0];
+        if (btnClassName.classList.contains("done-btn")) {
+            console.log(oneTask.className)
+            oneTask.classList.add("invisible");
+        }else {
+            // oneTask.classList.toggle("invisible");
+        }
+    });
+
+}
+
+function displayCompletedTasks(event) {
+    let allTasks = tasks.children;
+    Array.from(allTasks).forEach((oneTask) => {
+        btnClassName = oneTask.children[0].children[0];
+        if (btnClassName.classList.contains("notDone")) {
+            console.log(oneTask.className)
+            oneTask.classList.add("invisible");
+        }else {
+            // oneTask.classList.toggle("invisible");
+        }
+    });
+
+}
+
+
 
 
 //  Addind new task after clicking Enter
@@ -117,22 +163,6 @@ function getStorage(key) {
 
 
 
-
-// function isVisible(visibility) {
-//     if (visibility) {
-
-//     } else {
-
-//     }
-// }
-
-
-// function init() {
-//     if (localStorage.getItem("todo")) {
-//         todoList = JSON.parse(localStorage.getItem("todo"));
-//         todoList.forEach((message) => displayMessage(message));
-//         console.log(todoList)
-//     }
-// }
+// function init() {}
 
 // init();

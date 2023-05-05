@@ -135,6 +135,11 @@ header div p {
     border-bottom: 1px solid var(--very-dark-grayish-blue);
 }
 
+.invisible {
+    visibility: hidden;
+    display: none;
+}
+
 .flex-item {
     display: flex;
     align-items: center;
