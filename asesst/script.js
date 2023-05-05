@@ -46,11 +46,9 @@ function deleteTask(event) {
     let id = Number(parent.id);
 
     //deleting the task from local storage and saving changes
-    let tasks = todoList.filter((task) => task.id !== id);
-    setStorage('todo', tasks);
-    // parent.remove();
-    console.log(todoList);
-
+    todoList = todoList.filter((task) => task.id !== id);
+    setStorage('todo', todoList);
+    parent.remove();
 }
 
 
