@@ -77,15 +77,16 @@ function displayAllTasks(event) {
 
 function displayActiveTasks(event) {
     let allTasks = tasks.children;
+    Array.from(allTasks).forEach((oneTask) => {oneTask.classList.remove("invisible")});
     todoList.forEach((task) => {
         task.activeVisibility = task.checked ? false : true;
         task.completedVisibility = task.checked ? true : false;
+        console.log(task)
 
         if (!task.activeVisibility) {
             Array.from(allTasks).forEach((oneTask) => {
-                console.log(oneTask.classList);
-                oneTask.classList.remove("invisible");
-            if (task.id == oneTask.id) {
+            if (task.id === Number(oneTask.id)) {
+                console.log(task, oneTask);
                 oneTask.classList.add("invisible");
             }
             else {
@@ -98,13 +99,14 @@ function displayActiveTasks(event) {
 
 function displayCompletedTasks(event) {
     let allTasks = tasks.children;
+    Array.from(allTasks).forEach((oneTask) => {oneTask.classList.remove("invisible")});
     todoList.forEach((task) => {
         task.completedVisibility = task.checked ? false : true;
         task.activeVisibility = task.checked ? true : false;
-
+        console.log(task)
         if (task.completedVisibility) {
+            console.log(allTasks)
             Array.from(allTasks).forEach((oneTask) => {
-                oneTask.classList.remove("invisible");
             if (task.id == oneTask.id) {
                 oneTask.classList.add("invisible");
             }
