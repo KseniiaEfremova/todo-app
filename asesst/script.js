@@ -63,39 +63,57 @@ completedTasks.addEventListener("click", displayCompletedTasks);
 
 
 function displayAllTasks(event) {
+    todoList.forEach((task) => {
+        task.activeVisibility = false
+        task.completedVisibility = false;
+        });
 
-
+    let allTasks = tasks.children;
+    Array.from(allTasks).forEach((oneTask) => {
+        oneTask.classList.remove("invisible");
+    });
+    setStorage('todo', todoList);
 }
 
 function displayActiveTasks(event) {
     let allTasks = tasks.children;
-    Array.from(allTasks).forEach((oneTask) => {
-        btnClassName = oneTask.children[0].children[0];
-        if (btnClassName.classList.contains("done-btn")) {
-            console.log(oneTask.className)
-            oneTask.classList.add("invisible");
-        }else {
-            // oneTask.classList.toggle("invisible");
+    todoList.forEach((task) => {
+        task.activeVisibility = task.checked ? false : true;
+        task.completedVisibility = task.checked ? true : false;
+
+        if (!task.activeVisibility) {
+            Array.from(allTasks).forEach((oneTask) => {
+                console.log(oneTask.classList);
+                oneTask.classList.remove("invisible");
+            if (task.id == oneTask.id) {
+                oneTask.classList.add("invisible");
+            }
+            else {
+            }
+        });
         }
     });
-
 }
+
 
 function displayCompletedTasks(event) {
     let allTasks = tasks.children;
-    Array.from(allTasks).forEach((oneTask) => {
-        btnClassName = oneTask.children[0].children[0];
-        if (btnClassName.classList.contains("notDone")) {
-            console.log(oneTask.className)
-            oneTask.classList.add("invisible");
-        }else {
-            // oneTask.classList.toggle("invisible");
+    todoList.forEach((task) => {
+        task.completedVisibility = task.checked ? false : true;
+        task.activeVisibility = task.checked ? true : false;
+
+        if (task.completedVisibility) {
+            Array.from(allTasks).forEach((oneTask) => {
+                oneTask.classList.remove("invisible");
+            if (task.id == oneTask.id) {
+                oneTask.classList.add("invisible");
+            }
+            else {
+            }
+        });
         }
     });
-
 }
-
-
 
 
 //  Addind new task after clicking Enter
@@ -108,14 +126,14 @@ addMessage.addEventListener("keypress", function (event) {
             id: new Date().getTime(),
             todo: addMessage.value,
             checked: false,
-            visibility: true
+            activeVisibility: false,
+            completedVisibility: false
         };
         todoList.push(newTodo);
         addMessage.value = "";
         setStorage('todo', todoList);
         displayMessage(newTodo);
         addMessage.focus();
-
     }
 });
 

@@ -140,6 +140,11 @@ header div p {
     display: none;
 }
 
+.visible {
+    visibility:visible;
+    display: flex;
+}
+
 .flex-item {
     display: flex;
     align-items: center;
