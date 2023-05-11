@@ -43,6 +43,18 @@ button {
     cursor: pointer;
 }
 
+/* day/night mode */
+
+.sun {
+    visibility: visible;
+    display: flex;
+}
+
+.moon {
+    visibility: hidden;
+    display: none;
+}
+
 /* header */
 
 header div {

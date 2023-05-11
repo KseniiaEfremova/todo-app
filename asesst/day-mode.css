@@ -1,0 +1,61 @@
+body {
+    background-image: url("/asesst/img/bg-mobile-light.jpg");
+    background-color: var(--light-grayish-glue-hover);
+ }
+
+
+.sun {
+    visibility: hidden;
+    display: none;
+}
+
+.moon {
+    visibility: visible;
+    display: flex;
+}
+
+
+
+/* input box */
+
+.create-todo {
+    background-color: whitesmoke;
+    border-color: whitesmoke;
+
+}
+
+.input-box {
+    background-color: whitesmoke;
+    color: var(--dark-grayish-blue);
+}
+
+.check-btn {
+    background-color: whitesmoke;
+}
+
+
+/* todo list */
+
+.todo-list {
+    background-color: whitesmoke;
+    color: var(--very-dark-grayish-blue);
+
+}
+
+/* operations block */
+
+.operations-block {
+    background-color: var(--very-dark-desaturated-blue);
+    border: 1px solid var(--very-dark-desaturated-blue);
+
+    color: var(--light-grayish-blue);
+
+}
+
+.operations-block button {
+
+    background-color: var(--very-dark-desaturated-blue);
+    color: var(--dark-grayish-blue);
+
+
+}

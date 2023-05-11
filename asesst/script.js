@@ -6,6 +6,21 @@ let allTasksBtn = document.querySelector("#all-tasks");
 let activeTasks = document.querySelector("#active-tasks");
 let completedTasks = document.querySelector("#completed-tasks");
 
+let sunMode = document.querySelector(".sun");
+let moonMode = document.querySelector(".moon");
+
+sunMode.addEventListener("click", changeMode);
+moonMode.addEventListener("click", changeMode);
+
+function changeMode(event) {
+    let bgImg = document.querySelector("body");
+    let section = document.querySelector("section");
+    bgImg.style.backgroundImage = "url('/asesst/img/bg-mobile-light.jpg')";
+    bgImg.style.backgroundColor = "var(--light-grayish-glue-hover)";
+    section.style.backgroundColor = "var(--light-grayish-glue-hover)";
+
+}
+
 
 
 let todoList = [];
@@ -57,11 +72,12 @@ function deleteTask(event) {
 }
 
 
+//adding Listeners to Active/Completed/All buttons
 allTasksBtn.addEventListener("click", displayAllTasks);
 activeTasks.addEventListener("click", displayActiveTasks);
 completedTasks.addEventListener("click", displayCompletedTasks);
 
-
+//the function shows all tasks after clicking on the button 'All'
 function displayAllTasks(event) {
     todoList.forEach((task) => {
         task.activeVisibility = false
@@ -75,14 +91,17 @@ function displayAllTasks(event) {
     setStorage('todo', todoList);
 }
 
+//the function shows only active tasks after clicking on the button 'Active'
 function displayActiveTasks(event) {
     let allTasks = tasks.children;
-    Array.from(allTasks).forEach((oneTask) => {oneTask.classList.remove("invisible")});
+    //discard previous visibility property for refreshing
+    Array.from(allTasks).forEach((oneTask) => {oneTask.classList.remove("invisible")}); 
+    // changing visibility property for tasks
     todoList.forEach((task) => {
+        // make visible onle not checked/active tasks
         task.activeVisibility = task.checked ? false : true;
         task.completedVisibility = task.checked ? true : false;
-        console.log(task)
-
+        // finding active tasks and changing their className
         if (!task.activeVisibility) {
             Array.from(allTasks).forEach((oneTask) => {
             if (task.id === Number(oneTask.id)) {
@@ -96,14 +115,17 @@ function displayActiveTasks(event) {
     });
 }
 
-
+//the function shows only completed tasks after clicking on the button 'Completed'
 function displayCompletedTasks(event) {
     let allTasks = tasks.children;
-    Array.from(allTasks).forEach((oneTask) => {oneTask.classList.remove("invisible")});
+    //discard previous visibility property for refreshing
+    Array.from(allTasks).forEach((oneTask) => {oneTask.classList.remove("invisible")}); 
+    // changing visibility property for tasks
     todoList.forEach((task) => {
-        task.completedVisibility = task.checked ? false : true;
+        // make visible onle checked/completed tasks
+        task.completedVisibility = task.checked ? false : true; 
         task.activeVisibility = task.checked ? true : false;
-        console.log(task)
+        // finding completed tasks and changing their className
         if (task.completedVisibility) {
             console.log(allTasks)
             Array.from(allTasks).forEach((oneTask) => {
