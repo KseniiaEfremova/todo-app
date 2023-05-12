@@ -19,4 +19,10 @@ The TODO App is a simple web application that allows users to manage their tasks
 - JavaScript
 - LocalStorage - For storing tasks locally in the browser.
 
+## Contributing
+
+Contributions to the TODO App are welcome! If you have any bug reports, feature requests, or suggestions, please open an issue or submit a pull request.
+
+
+
 ![Todo app img](/asesst/img/desktop-design-dark.jpg)
