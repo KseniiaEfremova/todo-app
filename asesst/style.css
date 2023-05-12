@@ -107,14 +107,12 @@ header div p {
 
 .crossed-text {
     text-decoration: line-through;
-
+    color: var(--light-grayish-blue);
 }
 
 .noTick {
     visibility: hidden;
 }
-
-
 
 .input-box {
     background-color: var(--very-dark-desaturated-blue);
@@ -137,7 +135,6 @@ header div p {
     margin: 0 15px;
     align-items: center;
     color: var(--light-grayish-blue);
-
 }
 
 .todo-item {
@@ -202,6 +199,7 @@ header div p {
     align-items: center;
     color: var(--light-grayish-blue);
     text-align: center;
+    font-weight: 900;
 }
 
 .operations-block button {

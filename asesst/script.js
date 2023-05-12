@@ -9,16 +9,17 @@ let completedTasks = document.querySelector("#completed-tasks");
 let sunMode = document.querySelector(".sun");
 let moonMode = document.querySelector(".moon");
 
-sunMode.addEventListener("click", changeMode);
-moonMode.addEventListener("click", changeMode);
+sunMode.addEventListener("click", changeOnDayMode);
+moonMode.addEventListener("click", changeOnDarkMode);
 
-function changeMode(event) {
-    let bgImg = document.querySelector("body");
-    let section = document.querySelector("section");
-    bgImg.style.backgroundImage = "url('/asesst/img/bg-mobile-light.jpg')";
-    bgImg.style.backgroundColor = "var(--light-grayish-glue-hover)";
-    section.style.backgroundColor = "var(--light-grayish-glue-hover)";
+function changeOnDayMode(event) {
+    let linkDayMode = document.querySelector(".dayMode");
+    linkDayMode.href = "/asesst/day-mode.css";
+}
 
+function changeOnDarkMode(event) {
+    let linkDayMode = document.querySelector(".dayMode");
+    linkDayMode.href = "";
 }
 
 

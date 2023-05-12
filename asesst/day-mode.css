@@ -26,11 +26,11 @@ body {
 
 .input-box {
     background-color: whitesmoke;
-    color: var(--dark-grayish-blue);
 }
 
 .check-btn {
     background-color: whitesmoke;
+    border-color: var(--light-grayish-blue);
 }
 
 
@@ -39,23 +39,29 @@ body {
 .todo-list {
     background-color: whitesmoke;
     color: var(--very-dark-grayish-blue);
+    border-color: var(--light-grayish-blue);
+}
+
+.todo-item {
+    border-bottom: 1px solid var(--light-grayish-blue);
+}
+
+.cross-btn {
+    background-color: whitesmoke;
+    border-color: var(--light-grayish-blue);
 
 }
 
 /* operations block */
 
 .operations-block {
-    background-color: var(--very-dark-desaturated-blue);
-    border: 1px solid var(--very-dark-desaturated-blue);
+    background-color: whitesmoke;
+    border-color: var(--light-grayish-blue);
 
     color: var(--light-grayish-blue);
 
 }
 
 .operations-block button {
-
-    background-color: var(--very-dark-desaturated-blue);
-    color: var(--dark-grayish-blue);
-
-
+    background-color: whitesmoke;
 }
