@@ -1,8 +1,8 @@
-TODO APP
+# TODO APP
 
 The TODO App is a simple web application that allows users to manage their tasks and keep track of their to-do lists.
 
-Features
+## Features
 
 Add new tasks with a title and optional description.
 Mark tasks as completed.
@@ -12,7 +12,7 @@ Toggle light and dark mode
 Responsive design for optimal viewing on different devices.
 
 
-Technologies Used
+## Technologies Used
 
 HTML
 CSS
