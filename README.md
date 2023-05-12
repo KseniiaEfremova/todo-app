@@ -18,3 +18,5 @@ HTML
 CSS
 JavaScript
 LocalStorage - For storing tasks locally in the browser.
+
+![Todo app img](/asesst/img/bg-desktop-dark.jpg)
