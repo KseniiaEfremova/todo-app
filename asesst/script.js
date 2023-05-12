@@ -8,16 +8,6 @@ let completedTasks = document.querySelector("#completed-tasks");
 let numberOfTasks = document.querySelector("#number-of-tasks");
 let clearCompletedBtn = document.querySelector("#clear-completed");
 
-clearCompletedBtn.addEventListener("click", clearCompletedTask);
-
-function clearCompletedTask(event) {
-    todoList.forEach((task) => {
-        if (task.checked) {
-            console.log(task)
-        }
-    });
-}
-
 let todoList = [];
 
 if (localStorage.getItem("todo")) {
@@ -237,6 +227,14 @@ function countActiveTasks() {
     return result
 }
 
+
+clearCompletedBtn.addEventListener("click", clearCompletedTask);
+
+function clearCompletedTask(event) {
+    todoList = todoList.filter((task) => task.checked != true);
+
+    setStorage('todo', todoList);
+}
 
 // function init() {}
 
