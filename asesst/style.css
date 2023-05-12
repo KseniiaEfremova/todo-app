@@ -189,6 +189,18 @@ header div p {
     margin-right: 5px;
 }
 
+#clear-completed {
+    background-color: transparent;
+    border: transparent;
+    color: var(--dark-grayish-blue);
+    margin-right: 10px;
+}
+
+#clear-completed:hover {
+    color: var(--bright-blue);
+    border: transparent;
+}
+
 /* operations block */
 
 .operations-block {

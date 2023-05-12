@@ -5,24 +5,18 @@ let tasks = document.querySelector("#display-list");
 let allTasksBtn = document.querySelector("#all-tasks");
 let activeTasks = document.querySelector("#active-tasks");
 let completedTasks = document.querySelector("#completed-tasks");
+let numberOfTasks = document.querySelector("#number-of-tasks");
+let clearCompletedBtn = document.querySelector("#clear-completed");
 
-let sunMode = document.querySelector(".sun");
-let moonMode = document.querySelector(".moon");
+clearCompletedBtn.addEventListener("click", clearCompletedTask);
 
-sunMode.addEventListener("click", changeOnDayMode);
-moonMode.addEventListener("click", changeOnDarkMode);
-
-function changeOnDayMode(event) {
-    let linkDayMode = document.querySelector(".dayMode");
-    linkDayMode.href = "/asesst/day-mode.css";
+function clearCompletedTask(event) {
+    todoList.forEach((task) => {
+        if (task.checked) {
+            console.log(task)
+        }
+    });
 }
-
-function changeOnDarkMode(event) {
-    let linkDayMode = document.querySelector(".dayMode");
-    linkDayMode.href = "";
-}
-
-
 
 let todoList = [];
 
@@ -55,6 +49,8 @@ function doneTask(event) {
     let task = todoList.find((task) => task.id === id);
     task.checked = !task.checked;
     setStorage('todo', todoList);
+    //refresh counter of left tasks
+    numberOfTasks.textContent = countActiveTasks();
 
 }
 
@@ -70,6 +66,8 @@ function deleteTask(event) {
     todoList = todoList.filter((task) => task.id !== id);
     setStorage('todo', todoList);
     parent.remove();
+    //refresh counter of left tasks
+    numberOfTasks.textContent = countActiveTasks();
 }
 
 
@@ -83,7 +81,7 @@ function displayAllTasks(event) {
     todoList.forEach((task) => {
         task.activeVisibility = false
         task.completedVisibility = false;
-        });
+    });
 
     let allTasks = tasks.children;
     Array.from(allTasks).forEach((oneTask) => {
@@ -96,7 +94,7 @@ function displayAllTasks(event) {
 function displayActiveTasks(event) {
     let allTasks = tasks.children;
     //discard previous visibility property for refreshing
-    Array.from(allTasks).forEach((oneTask) => {oneTask.classList.remove("invisible")}); 
+    Array.from(allTasks).forEach((oneTask) => { oneTask.classList.remove("invisible") });
     // changing visibility property for tasks
     todoList.forEach((task) => {
         // make visible onle not checked/active tasks
@@ -105,13 +103,13 @@ function displayActiveTasks(event) {
         // finding active tasks and changing their className
         if (!task.activeVisibility) {
             Array.from(allTasks).forEach((oneTask) => {
-            if (task.id === Number(oneTask.id)) {
-                console.log(task, oneTask);
-                oneTask.classList.add("invisible");
-            }
-            else {
-            }
-        });
+                if (task.id === Number(oneTask.id)) {
+                    console.log(task, oneTask);
+                    oneTask.classList.add("invisible");
+                }
+                else {
+                }
+            });
         }
     });
 }
@@ -120,22 +118,22 @@ function displayActiveTasks(event) {
 function displayCompletedTasks(event) {
     let allTasks = tasks.children;
     //discard previous visibility property for refreshing
-    Array.from(allTasks).forEach((oneTask) => {oneTask.classList.remove("invisible")}); 
+    Array.from(allTasks).forEach((oneTask) => { oneTask.classList.remove("invisible") });
     // changing visibility property for tasks
     todoList.forEach((task) => {
         // make visible onle checked/completed tasks
-        task.completedVisibility = task.checked ? false : true; 
+        task.completedVisibility = task.checked ? false : true;
         task.activeVisibility = task.checked ? true : false;
         // finding completed tasks and changing their className
         if (task.completedVisibility) {
             console.log(allTasks)
             Array.from(allTasks).forEach((oneTask) => {
-            if (task.id == oneTask.id) {
-                oneTask.classList.add("invisible");
-            }
-            else {
-            }
-        });
+                if (task.id == oneTask.id) {
+                    oneTask.classList.add("invisible");
+                }
+                else {
+                }
+            });
         }
     });
 }
@@ -159,6 +157,8 @@ addMessage.addEventListener("keypress", function (event) {
         setStorage('todo', todoList);
         displayMessage(newTodo);
         addMessage.focus();
+        //refresh counter of left tasks
+        numberOfTasks.textContent = countActiveTasks();
     }
 });
 
@@ -190,7 +190,7 @@ function displayMessage(todoItem) {
                     </svg>
                 </button>
         </div>`;
-    todo.insertAdjacentHTML("beforeend", message);
+    todo.insertAdjacentHTML("afterbegin", message);
     // todo.innerHTML = message;
 }
 
@@ -204,6 +204,38 @@ function getStorage(key) {
 }
 
 
+// change MODE
+let sunMode = document.querySelector(".sun");
+let moonMode = document.querySelector(".moon");
+
+sunMode.addEventListener("click", changeOnDayMode);
+moonMode.addEventListener("click", changeOnDarkMode);
+
+// the function switches on day mode
+function changeOnDayMode(event) {
+    let linkDayMode = document.querySelector(".dayMode");
+    linkDayMode.href = "/asesst/day-mode.css";
+}
+
+// the function switches on night mode
+function changeOnDarkMode(event) {
+    let linkDayMode = document.querySelector(".dayMode");
+    linkDayMode.href = "";
+}
+
+
+//refresh counter of left tasks
+numberOfTasks.textContent = countActiveTasks();
+
+function countActiveTasks() {
+    let result = 0;
+    todoList.forEach((task) => {
+        if (!task.checked) {
+            result += 1
+        }
+    });
+    return result
+}
 
 
 // function init() {}
